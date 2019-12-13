@@ -6,9 +6,10 @@ import pandas as pd
 discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgyHUUCuyAzElYGLTuWzBeyiOhpjAEYA')
 
 
-def index(request):
+def get_blues_recommendations(request):
     results = discogs_api.search('Sell', genre='Blues', format='Vinyl',
                                  currency='GBP', price='5to10')
+    print(list(results))
 
     # results2 = discogs_api.artist(id='322292')
 

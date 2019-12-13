@@ -4,7 +4,7 @@ import discogs_client
 discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgyHUUCuyAzElYGLTuWzBeyiOhpjAEYA')
 
 
-def index(request):
+def get_electronic_recommendations(request):
     results = discogs_api.search('Sell', genre='Electronic', format='Vinyl',
                                  currency='GBP', price='10to15', year='2019')
     all_dicts = []

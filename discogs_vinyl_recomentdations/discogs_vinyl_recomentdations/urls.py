@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from recommendations import blues_views, electronic_views
+from recommendations import blues_views, electronic_views, house_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('blues', blues_views.index, name='index'),
-    url('electronic', electronic_views.index, name='index')
+    url('electronic', electronic_views.index, name='index'),
+    url('house', house_views.index, name='index')
 ]

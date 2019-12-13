@@ -5,8 +5,8 @@ discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgy
 
 
 def index(request):
-    results = discogs_api.search('Sell', genre='Blues', format='Vinyl',
-                                 currency='GBP', price='5to10', year='1991')
+    results = discogs_api.search('Sell', style='House', format='Vinyl',
+                                 currency='GBP', price='5to10')
     all_dicts = []
     print(len(results))
     for result in results:

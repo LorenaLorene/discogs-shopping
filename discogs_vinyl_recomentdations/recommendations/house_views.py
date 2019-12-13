@@ -1,6 +1,5 @@
 from django.http.response import JsonResponse
 import discogs_client
-from django.template import loader
 
 discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgyHUUCuyAzElYGLTuWzBeyiOhpjAEYA')
 
@@ -16,5 +15,3 @@ def index(request):
         all_dicts.append(dict1)
     return JsonResponse(all_dicts, json_dumps_params={'indent': 2}, safe=False)
 
-    # context = {'list_of_results': }
-    # return HttpResponse(template.render(context, request))

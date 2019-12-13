@@ -13,4 +13,4 @@ def index(request):
         dict1 = {}
         dict1['title'] = result.title
         all_dicts.append(dict1)
-    return JsonResponse(all_dicts, safe=False)
+    return JsonResponse(all_dicts, json_dumps_params={'indent': 2}, safe=False)

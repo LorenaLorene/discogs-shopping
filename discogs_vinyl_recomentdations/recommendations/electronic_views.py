@@ -1,5 +1,6 @@
 from django.http.response import JsonResponse
 import discogs_client
+import numpy as np
 
 discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgyHUUCuyAzElYGLTuWzBeyiOhpjAEYA')
 
@@ -7,10 +8,29 @@ discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgy
 def get_electronic_recommendations(request):
     results = discogs_api.search('Sell', genre='Electronic', format='Vinyl',
                                  currency='GBP', price='10to15', year='2019')
-    all_dicts = []
-    print(len(results))
+    all_recommendations = []
+    # for each search result
     for result in results:
-        dict1 = {}
-        dict1['title'] = result.title
-        all_dicts.append(dict1)
-    return JsonResponse(all_dicts, json_dumps_params={'indent': 2}, safe=False)
+        recommendation = {}
+        # we request release by id to get full data
+        release = discogs_api.release(result.id)
+        recommendation['title'] = release.title
+        recommendation['id'] = release.id
+        recommendation['artists'] = []
+        recommendation['labels'] = []
+        # generate own price to add more data as I couldn't retrieve from api
+        price = np.random.randint(0, 100) / 10
+        recommendation['price'] = price
+        for label in release.labels:
+            recommendation['labels'].append({
+                "id": label.id,
+                "name": label.name
+            })
+        for artist in release.artists:
+            recommendation['artists'].append({
+                "id": artist.id,
+                "name": artist.name
+            })
+        all_recommendations.append(recommendation)
+        sorted_by_price = sorted(all_recommendations, key=lambda i: i['price'])
+    return JsonResponse(sorted_by_price, json_dumps_params={'indent': 2}, safe=False)

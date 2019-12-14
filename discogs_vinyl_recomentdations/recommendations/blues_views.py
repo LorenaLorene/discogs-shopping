@@ -8,8 +8,11 @@ discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgy
 
 def get_blues_recommendations(request):
     # search discogs for releases. each result gives id of release. get list of objects
-    results = discogs_api.search('Sell', genre='Blues', format='Vinyl',
-                                 currency='GBP', price='5to10', year='1985')
+    results = discogs_api.search('Sell', genre='Blues',
+                                 format='Vinyl',
+                                 currency='GBP',
+                                 price='5to10',
+                                 year='1985')
     all_recommendations = []
     # for each search result
     for result in results:

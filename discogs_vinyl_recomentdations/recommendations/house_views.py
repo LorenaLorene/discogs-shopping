@@ -6,8 +6,11 @@ discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgy
 
 
 def get_house_recommendations(request):
-    results = discogs_api.search('Sell', style='House', format='Vinyl',
-                                 currency='GBP', price='5to10', year='2019')
+    results = discogs_api.search('Sell', style='House',
+                                 format='Vinyl',
+                                 currency='GBP',
+                                 price='5to10',
+                                 year='2019')
 
     all_recommendations = []
     # for each search result

@@ -6,8 +6,12 @@ discogs_api = discogs_client.Client('my_user_agent/1.0', user_token='iveLOjvMtgy
 
 
 def get_electronic_recommendations(request):
-    results = discogs_api.search('Sell', genre='Electronic', format='Vinyl',
-                                 currency='GBP', price='10to15', year='2019')
+    results = discogs_api.search('Sell', genre='Electronic',
+                                 format='Vinyl',
+                                 currency='GBP',
+                                 price='10to15',
+                                 year='2019')
+
     all_recommendations = []
     # for each search result
     for result in results:

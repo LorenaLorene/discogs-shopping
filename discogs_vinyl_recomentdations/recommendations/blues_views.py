@@ -23,8 +23,8 @@ def get_blues_recommendations(request):
         recommendation['id'] = release.id
         recommendation['artists'] = []
         recommendation['labels'] = []
-        # generate own price to add more data as I couldnt retrieve from api
-        price = np.random.randint(0, 100) / 10
+        # generate own price to add more data as I couldn't retrieve from api
+        price = np.random.randint(5, 40) / 100
         recommendation['price'] = price
         for label in release.labels:
             recommendation['labels'].append({
